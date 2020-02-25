@@ -50,7 +50,7 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
                 </div>
             <?php endforeach; ?>
             <div class="colorado_variation">
-                <!--                    <div class="label">Quantity</div>-->
+                <!--                this is the quantity-->
                 <div class="value">
                     <?php
                     woocommerce_quantity_input(array(

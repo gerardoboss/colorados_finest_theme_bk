@@ -51,6 +51,11 @@ body.woocommerce #primary {
   background-repeat: none;
   background-size: cover;
 
+  .main_logo {
+    display: flex;
+    justify-content: center;
+  }
+
   .more_products {
     height: 500px;
     vertical-align: text-bottom;
@@ -133,7 +138,10 @@ body.woocommerce #primary {
         flex-direction: column;
         text-align: left;
 
-        .product_title {
+        .colorados_product_title {
+          font-weight: bold;
+          font-family: Gotham, Arial, Helvetica, sans-serif;
+          font-size: 2rem;
           font-weight: bold;
         }
 
