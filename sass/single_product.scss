@@ -80,8 +80,12 @@
   display: flex;
   color: $coloradosYellow !important;
   margin-top: 1rem;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
+
+  .price {
+    display: unset !important;
+  }
 
   .price_title {
     margin-right: 0.5rem;
@@ -102,4 +106,9 @@
   font-weight: bold !important;
   font-size: 3rem !important;
   font-weight: bold !important;
+}
+
+.table_products {
+  font-size: 1rem !important;
+  margin-top: 1rem;
 }

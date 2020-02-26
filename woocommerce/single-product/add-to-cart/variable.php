@@ -65,7 +65,6 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
             </div>
         </div>
         <div class="variation_price">
-            <div class="price_title">Price:</div>
             <div class="woocommerce-variation single_variation"></div>
         </div>
         <div class="colorados_finest_submit">
@@ -80,6 +79,7 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
         </div>
 
     <?php endif; ?>
-
+    <?php do_action('woocommerce_after_variations_form'); ?>
 </form>
+<?php do_action('woocommerce_after_add_to_cart_form'); ?>
 

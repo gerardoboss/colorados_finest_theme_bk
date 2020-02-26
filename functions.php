@@ -60,25 +60,6 @@ remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_re
 remove_action('woocommerce_after_single_product_summary', 'storefront_single_product_pagination', 30);
 
 /**
- * @snippet       Variable Product Price Range: "From: $$$min_price"
- * @how-to        Get CustomizeWoo.com FREE
- * @sourcecode    https://businessbloomer.com/?p=275
- * @author        Rodolfo Melogli
- * @compatible    WooCommerce 3.5.4
- * @donate $9     https://businessbloomer.com/bloomer-armada/
- */
-
-//add_filter('woocommerce_variable_price_html', 'bbloomer_variation_price_format_min', 9999, 2);
-
-function bbloomer_variation_price_format_min($price, $product)
-{
-    $prices = $product->get_variation_prices(true);
-    $min_price = current($prices['price']);
-    $price = sprintf(__('From: %1$s', 'woocommerce'), wc_price($min_price));
-    return $price;
-}
-
-/**
  * @snippet       Add Custom Field to Product Variations - WooCommerce
  * @how-to        Get CustomizeWoo.com FREE
  * @sourcecode    https://businessbloomer.com/?p=73545
@@ -94,11 +75,16 @@ add_action('woocommerce_variation_options_pricing', 'add_max_thc_field_backend',
 add_action('woocommerce_variation_options_pricing', 'add_max_active_cbd', 10, 3);
 add_action('woocommerce_variation_options_pricing', 'add_tactive_cannabinoids', 10, 3);
 add_action('woocommerce_variation_options_pricing', 'add_total_cannabinoids', 10, 3);
+add_action('woocommerce_variation_options_pricing', 'add_max_active_cbd_ml', 10, 3);
+add_action('woocommerce_variation_options_pricing', 'add_max_active_thc_ml', 10, 3);
+add_action('woocommerce_variation_options_pricing', 'add_t_active_cannabinoids_ml', 10, 3);
+add_action('woocommerce_variation_options_pricing', 'add_total_cannabinoids_ml', 10, 3);
+add_action('woocommerce_variation_options_pricing', 'add_lab_report', 10, 3);
 
 function add_max_thc_field_backend($loop, $variation_data, $variation)
 {
     woocommerce_wp_text_input(array(
-            'id' => 'custom_field[' . $loop . ']',
+            'id' => 'max_active_thc[' . $loop . ']',
             'class' => 'short',
             'label' => __('Max Active THC', 'woocommerce'),
             'value' => get_post_meta($variation->ID, 'max_active_thc', true)
@@ -109,7 +95,7 @@ function add_max_thc_field_backend($loop, $variation_data, $variation)
 function add_max_active_cbd($loop, $variation_data, $variation)
 {
     woocommerce_wp_text_input(array(
-            'id' => 'custom_field[' . $loop . ']',
+            'id' => 'max_active_cbd[' . $loop . ']',
             'class' => 'short',
             'label' => __('Max Active CBD', 'woocommerce'),
             'value' => get_post_meta($variation->ID, 'max_active_cbd', true)
@@ -120,7 +106,7 @@ function add_max_active_cbd($loop, $variation_data, $variation)
 function add_tactive_cannabinoids($loop, $variation_data, $variation)
 {
     woocommerce_wp_text_input(array(
-            'id' => 'custom_field[' . $loop . ']',
+            'id' => 't_active_cannabinoids[' . $loop . ']',
             'class' => 'short',
             'label' => __('T.Active Cannabinoids', 'woocommerce'),
             'value' => get_post_meta($variation->ID, 't_active_cannabinoids', true)
@@ -131,7 +117,7 @@ function add_tactive_cannabinoids($loop, $variation_data, $variation)
 function add_total_cannabinoids($loop, $variation_data, $variation)
 {
     woocommerce_wp_text_input(array(
-            'id' => 'custom_field[' . $loop . ']',
+            'id' => 'total_cannabinoids[' . $loop . ']',
             'class' => 'short',
             'label' => __('Total Cannabinoids', 'woocommerce'),
             'value' => get_post_meta($variation->ID, 'total_cannabinoids', true)
@@ -139,36 +125,128 @@ function add_total_cannabinoids($loop, $variation_data, $variation)
     );
 }
 
+function add_max_active_cbd_ml($loop, $variation_data, $variation)
+{
+    woocommerce_wp_text_input(array(
+            'id' => 'max_active_cbd_ml[' . $loop . ']',
+            'class' => 'short',
+            'label' => __('Max Active CBD ML', 'woocommerce'),
+            'value' => get_post_meta($variation->ID, 'max_active_cbd_ml', true)
+        )
+    );
+}
+
+function add_max_active_thc_ml($loop, $variation_data, $variation)
+{
+    woocommerce_wp_text_input(array(
+            'id' => 'max_active_thc_ml[' . $loop . ']',
+            'class' => 'short',
+            'label' => __('Max Active THC', 'woocommerce'),
+            'value' => get_post_meta($variation->ID, 'max_active_thc_ml', true)
+        )
+    );
+}
+
+
+function add_t_active_cannabinoids_ml($loop, $variation_data, $variation)
+{
+    woocommerce_wp_text_input(array(
+            'id' => 't_active_cannabinoids_ml[' . $loop . ']',
+            'class' => 'short',
+            'label' => __('Max Active CBD ML', 'woocommerce'),
+            'value' => get_post_meta($variation->ID, 't_active_cannabinoids_ml', true)
+        )
+    );
+}
+
+function add_total_cannabinoids_ml($loop, $variation_data, $variation)
+{
+    woocommerce_wp_text_input(array(
+            'id' => 'total_cannabinoids_ml[' . $loop . ']',
+            'class' => 'short',
+            'label' => __('Total Cannabinoids ML', 'woocommerce'),
+            'value' => get_post_meta($variation->ID, 'total_cannabinoids_ml', true)
+        )
+    );
+}
+
+function add_lab_report($loop, $variation_data, $variation)
+{
+    woocommerce_wp_text_input(array(
+            'id' => 'lab_report[' . $loop . ']',
+            'class' => 'short',
+            'label' => __('Lab Report', 'woocommerce'),
+            'value' => get_post_meta($variation->ID, 'lab_report', true)
+        )
+    );
+}
+
+
 // -----------------------------------------
 // 2. Save custom field on product variation save
 
 add_action('woocommerce_save_product_variation', 'save_max_thc', 10, 2);
-add_action('woocommerce_save_product_variation', 'save_max_cbd', 10, 2);
-add_action('woocommerce_save_product_variation', 'save_active_cannabinoids', 10, 2);
-add_action('woocommerce_save_product_variation', 'save_total_cannabinoids', 10, 2);
+add_action('woocommerce_save_product_variation', 'save_max_cbd', 10, 3);
+add_action('woocommerce_save_product_variation', 'save_active_cannabinoids', 10, 4);
+add_action('woocommerce_save_product_variation', 'save_total_cannabinoids', 10, 5);
+add_action('woocommerce_save_product_variation', 'save_max_thc_ml', 10, 6);
+add_action('woocommerce_save_product_variation', 'save_max_cbd_ml', 10, 7);
+add_action('woocommerce_save_product_variation', 'save_active_cannabinoids_ml', 10, 8);
+add_action('woocommerce_save_product_variation', 'save_total_cannabinoids_ml', 10, 9);
+add_action('woocommerce_save_product_variation', 'save_lab_report', 10, 9);
 
 function save_max_thc($variation_id, $i)
 {
-    $custom_field = $_POST['custom_field'][$i];
+    $custom_field = $_POST['max_active_thc'][$i];
     if (isset($custom_field)) update_post_meta($variation_id, 'max_active_thc', esc_attr($custom_field));
 }
 
 function save_max_cbd($variation_id, $i)
 {
-    $custom_field = $_POST['custom_field'][$i];
+    $custom_field = $_POST['max_active_cbd'][$i];
     if (isset($custom_field)) update_post_meta($variation_id, 'max_active_cbd', esc_attr($custom_field));
 }
 
 function save_active_cannabinoids($variation_id, $i)
 {
-    $custom_field = $_POST['custom_field'][$i];
+    $custom_field = $_POST['t_active_cannabinoids'][$i];
     if (isset($custom_field)) update_post_meta($variation_id, 't_active_cannabinoids', esc_attr($custom_field));
 }
 
 function save_total_cannabinoids($variation_id, $i)
 {
-    $custom_field = $_POST['custom_field'][$i];
+    $custom_field = $_POST['total_cannabinoids'][$i];
     if (isset($custom_field)) update_post_meta($variation_id, 'total_cannabinoids', esc_attr($custom_field));
+}
+
+function save_max_thc_ml($variation_id, $i)
+{
+    $custom_field = $_POST['max_active_thc_ml'][$i];
+    if (isset($custom_field)) update_post_meta($variation_id, 'max_active_thc_ml', esc_attr($custom_field));
+}
+
+function save_max_cbd_ml($variation_id, $i)
+{
+    $custom_field = $_POST['max_active_cbd_ml'][$i];
+    if (isset($custom_field)) update_post_meta($variation_id, 'max_active_cbd_ml', esc_attr($custom_field));
+}
+
+function save_active_cannabinoids_ml($variation_id, $i)
+{
+    $custom_field = $_POST['t_active_cannabinoids_ml'][$i];
+    if (isset($custom_field)) update_post_meta($variation_id, 't_active_cannabinoids_ml', esc_attr($custom_field));
+}
+
+function save_total_cannabinoids_ml($variation_id, $i)
+{
+    $custom_field = $_POST['total_cannabinoids_ml'][$i];
+    if (isset($custom_field)) update_post_meta($variation_id, 'total_cannabinoids_ml', esc_attr($custom_field));
+}
+
+function save_lab_report($variation_id, $i)
+{
+    $custom_field = $_POST['lab_report'][$i];
+    if (isset($custom_field)) update_post_meta($variation_id, 'lab_report', esc_attr($custom_field));
 }
 
 // -----------------------------------------
@@ -178,27 +256,62 @@ add_filter('woocommerce_available_variation', 'add_max_thc_data');
 add_filter('woocommerce_available_variation', 'add_max_cbd_data');
 add_filter('woocommerce_available_variation', 'add_active_cannabinoids_data');
 add_filter('woocommerce_available_variation', 'add_total_cannabinoids_data');
+add_filter('woocommerce_available_variation', 'add_max_thc_data_ml');
+add_filter('woocommerce_available_variation', 'add_max_cbd_data_ml');
+add_filter('woocommerce_available_variation', 'add_active_cannabinoids_data_ml');
+add_filter('woocommerce_available_variation', 'add_total_cannabinoids_data_ml');
+add_filter('woocommerce_available_variation', 'add_lab_report_display');
 
 function add_max_thc_data($variations)
 {
-    $variations['max_active_thc'] = '<div class="woocommerce_custom_field">Max Active THC: <span>' . get_post_meta($variations['variation_id'], 'max_active_thc', true) . '</span></div>';
+    $variations['max_active_thc'] = '<tr><td>Max Active THC:</td><td>' . get_post_meta($variations['variation_id'], 'max_active_thc', true) . '</td>';
     return $variations;
 }
 
 function add_max_cbd_data($variations)
 {
-    $variations['max_active_cbd'] = '<div class="woocommerce_custom_field">Max Active CBD: <span>' . get_post_meta($variations['variation_id'], 'max_active_cbd', true) . '</span></div>';
+    $variations['max_active_cbd'] = '<tr><td>Max Active CBD:</td><td>' . get_post_meta($variations['variation_id'], 'max_active_cbd', true) . '</td>';
     return $variations;
 }
 
 function add_active_cannabinoids_data($variations)
 {
-    $variations['t_active_cannabinoids'] = '<div class="woocommerce_custom_field">T.Active Cannabinoids: <span>' . get_post_meta($variations['variation_id'], 't_active_cannabinoids', true) . '</span></div>';
+    $variations['t_active_cannabinoids'] = '<tr><td>T.Active Cannabinoids: </td><td>' . get_post_meta($variations['variation_id'], 't_active_cannabinoids', true) . '</td>';
     return $variations;
 }
 
 function add_total_cannabinoids_data($variations)
 {
-    $variations['total_cannabinoids'] = '<div class="woocommerce_custom_field">Total Cannabinoids: <span>' . get_post_meta($variations['variation_id'], 'total_cannabinoids', true) . '</span></div>';
+    $variations['total_cannabinoids'] = '<tr><td>Total Cannabinoids: </td><td>' . get_post_meta($variations['variation_id'], 'total_cannabinoids', true) . '</td>';
+    return $variations;
+}
+
+function add_max_thc_data_ml($variations)
+{
+    $variations['max_active_thc_ml'] = '<td>' . get_post_meta($variations['variation_id'], 'max_active_thc_ml', true) . '</td></tr>';
+    return $variations;
+}
+
+function add_max_cbd_data_ml($variations)
+{
+    $variations['max_active_cbd_ml'] = '<td>' . get_post_meta($variations['variation_id'], 'max_active_cbd_ml', true) . '</td></tr>';
+    return $variations;
+}
+
+function add_active_cannabinoids_data_ml($variations)
+{
+    $variations['t_active_cannabinoids_ml'] = '<td>' . get_post_meta($variations['variation_id'], 't_active_cannabinoids_ml', true) . '</td></tr>';
+    return $variations;
+}
+
+function add_total_cannabinoids_data_ml($variations)
+{
+    $variations['total_cannabinoids_ml'] = '<td>' . get_post_meta($variations['variation_id'], 'total_cannabinoids_ml', true) . '</td></tr>';
+    return $variations;
+}
+
+function add_lab_report_display($variations)
+{
+    $variations['lab_report'] = '</tr><tr><td colspan="3"><a href="' . get_post_meta($variations['variation_id'], 'lab_report', true) . '">Lab Report</a></td></tr>';
     return $variations;
 }

@@ -1560,8 +1560,12 @@ footer .footer_footer {
 	display: flex;
 	color: #FABC1E !important;
 	margin-top: 1rem;
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: bold;
+}
+
+.variation_price .price {
+	display: unset !important;
 }
 
 .variation_price .price_title {
@@ -1578,4 +1582,9 @@ footer .footer_footer {
 	font-weight: bold !important;
 	font-size: 3rem !important;
 	font-weight: bold !important;
+}
+
+.table_products {
+	font-size: 1rem !important;
+	margin-top: 1rem;
 }
