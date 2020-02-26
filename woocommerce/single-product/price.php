@@ -24,5 +24,8 @@ global $product;
 ?>
 <!--<p class="--><?php //echo esc_attr(apply_filters('woocommerce_product_price_class', 'price')); ?><!--">--><?php //echo $product->get_price_html(); ?><!--</p>-->
 <?php if (!$product->is_type('variable')) : ?>
-    <p class="price"><?php echo $product->get_price_html(); ?></p>
+    <div class="variation_price">
+        <span class="price price_title">Price: </span><span><?php echo $product->get_price_html(); ?></span>
+    </div>
+
 <?php endif; ?>

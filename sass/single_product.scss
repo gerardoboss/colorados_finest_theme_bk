@@ -85,6 +85,7 @@
 
   .price {
     display: unset !important;
+    margin: unset !important;
   }
 
   .price_title {
@@ -100,6 +101,8 @@
 }
 
 .colorados_finest_submit {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 .product_title, .entry-title {
@@ -112,3 +115,26 @@
   font-size: 1rem !important;
   margin-top: 1rem;
 }
+
+.product_table {
+  margin-top: 2rem !important;
+
+  td {
+    text-align: center;
+  }
+}
+
+.simple_submit_button {
+  clear: both;
+  margin-top: 4rem !important;
+}
+
+.quantity .qty {
+  background-color: white;
+  box-shadow: unset;
+  border: 1px solid #aaa;
+  border-radius: 1em;
+  padding: .6em 1.4em .5em .8em !important;
+  font-size: 16px;
+}
+

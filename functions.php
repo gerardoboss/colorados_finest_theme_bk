@@ -51,7 +51,7 @@ function remove_storefront_sidebar()
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 6);
-add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 39);
+add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 34);
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15);
@@ -315,3 +315,292 @@ function add_lab_report_display($variations)
     $variations['lab_report'] = '</tr><tr><td colspan="3"><a href="' . get_post_meta($variations['variation_id'], 'lab_report', true) . '">Lab Report</a></td></tr>';
     return $variations;
 }
+
+// ------------- simple product custom fields -----------------------------
+
+/**
+ * Displays the custom text field input field in the WooCommerce product data meta box
+ */
+function add_product_lab_simple_product()
+{
+    $args = array(
+        'id' => 'simple_product_lab_report',
+        'label' => __('Lab Report', 'cf_lab_report'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Add lab report url for this product', 'cf_lab_report_h'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_product_lab_simple_product');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_lab_report($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_lab_report']) ? $_POST['simple_product_lab_report'] : '';
+    $product->update_meta_data('simple_product_lab_report', sanitize_text_field($title));
+    $product->save();
+}
+
+function add_simple_product_max_thc()
+{
+    $args = array(
+        'id' => 'simple_product_max_active_thc',
+        'label' => __('Max Active THC', 'max_active_thc'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Add Max Active THC', 'cf_max_active_thc'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_max_thc');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_max_thc($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_max_active_thc']) ? $_POST['simple_product_max_active_thc'] : '';
+    $product->update_meta_data('simple_product_max_active_thc', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_max_thc');
+
+function add_simple_product_max_cbd()
+{
+    $args = array(
+        'id' => 'simple_product_max_active_cbd',
+        'label' => __('Max Active CBD', 'max_active_cbd'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Add Max Active CBD', 'cf_max_active_cbd'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_max_cbd');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_max_cbd($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_max_active_cbd']) ? $_POST['simple_product_max_active_cbd'] : '';
+    $product->update_meta_data('simple_product_max_active_cbd', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_max_cbd');
+
+function add_simple_product_t_active_cannabinoids()
+{
+    $args = array(
+        'id' => 'simple_product_t_active_cannabinoids',
+        'label' => __('T.Active Cannabinoids', 't_active_cannabinoids'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('T Active Cannabinoids', 'simple_product_t_active_cannabinoids_d'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_t_active_cannabinoids');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_t_active_cannabinoids($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_t_active_cannabinoids']) ? $_POST['simple_product_t_active_cannabinoids'] : '';
+    $product->update_meta_data('simple_product_t_active_cannabinoids', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_t_active_cannabinoids');
+
+function add_simple_product_total_cannabinoids()
+{
+    $args = array(
+        'id' => 'simple_product_total_cannabinoids',
+        'label' => __('Total Cannabinoids', 'total_cannabinoids'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Total Cannabinoids', 'simple_product_t_active_cannabinoids_d'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_total_cannabinoids');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_total_cannabinoids($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_total_cannabinoids']) ? $_POST['simple_product_total_cannabinoids'] : '';
+    $product->update_meta_data('simple_product_total_cannabinoids', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_total_cannabinoids');
+
+/**
+ * Displays the custom text field input field in the WooCommerce product data meta box
+ */
+
+function add_simple_product_max_thc_ml()
+{
+    $args = array(
+        'id' => 'simple_product_max_active_thc_ml',
+        'label' => __('Max Active THC ML', 'max_active_thc_ml'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Add Max Active THC ML', 'cf_max_active_thc_ml'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_max_thc_ml');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_max_thc_ml($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_max_active_thc_ml']) ? $_POST['simple_product_max_active_thc_ml'] : '';
+    $product->update_meta_data('simple_product_max_active_thc_ml', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_max_thc_ml');
+
+function add_simple_product_max_cbd_ml()
+{
+    $args = array(
+        'id' => 'simple_product_max_active_cbd_ml',
+        'label' => __('Max Active CBD ML', 'max_active_cbd_ml'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Add Max Active CBD ML', 'cf_max_active_cbd_ml'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_max_cbd_ml');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_max_cbd_ml($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_max_active_cbd_ml']) ? $_POST['simple_product_max_active_cbd_ml'] : '';
+    $product->update_meta_data('simple_product_max_active_cbd_ml', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_max_cbd_ml');
+
+function add_simple_product_t_active_cannabinoids_ml()
+{
+    $args = array(
+        'id' => 'simple_product_t_active_cannabinoids_ml',
+        'label' => __('T.Active Cannabinoids ML', 't_active_cannabinoids_ml_d'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('T Active Cannabinoids ML', 'add_simple_product_t_active_cannabinoids_ml'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_t_active_cannabinoids_ml');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_t_active_cannabinoids_ml($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_t_active_cannabinoids_ml']) ? $_POST['simple_product_t_active_cannabinoids_ml'] : '';
+    $product->update_meta_data('simple_product_t_active_cannabinoids_ml', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_t_active_cannabinoids_ml');
+
+function add_simple_product_total_cannabinoids_ml()
+{
+    $args = array(
+        'id' => 'simple_product_total_cannabinoids_ml',
+        'label' => __('Total Cannabinoids ML', 'total_cannabinoids_ml'),
+        'class' => 'cf-custom-field',
+        'desc_tip' => true,
+        'description' => __('Total Cannabinoids ML', 'simple_product_t_active_cannabinoids_ml'),
+    );
+    woocommerce_wp_text_input($args);
+}
+
+add_action('woocommerce_product_options_general_product_data', 'add_simple_product_total_cannabinoids_ml');
+/**
+ * Saves the custom field data to product meta data
+ */
+function cf_save_simple_product_total_cannabinoids_ml($post_id)
+{
+    $product = wc_get_product($post_id);
+    $title = isset($_POST['simple_product_total_cannabinoids_ml']) ? $_POST['simple_product_total_cannabinoids_ml'] : '';
+    $product->update_meta_data('simple_product_total_cannabinoids_ml', sanitize_text_field($title));
+    $product->save();
+}
+
+add_action('woocommerce_process_product_meta', 'cf_save_simple_product_total_cannabinoids_ml');
+
+
+/**
+ * Displays custom field data after the add to cart button -------------------------------------------------------------
+ */
+function add_lab_report_display_simple_product()
+{
+    global $post;
+// Check for the custom field value
+    $product = wc_get_product($post->ID);
+    $title = $product->get_meta('simple_product_lab_report');
+    if ($title) {
+        echo '<a href="' . get_post_meta($post->ID, 'simple_product_lab_report', true) . '">Lab Report </a>';
+    }
+}
+
+function display_table_single_product_table()
+{
+    global $post;
+// Check for the custom field value
+    $product = wc_get_product($post->ID);
+    $active_thc = $product->get_meta('simple_product_max_active_thc');
+    $active_cbd = $product->get_meta('simple_product_max_active_cbd');
+    $t_active_cannabinoids = $product->get_meta('simple_product_t_active_cannabinoids');
+    $total_cannabinoids = $product->get_meta('simple_product_total_cannabinoids');
+    if ($active_thc) {
+        echo "<table class='table table-striped product_table'><thead><tr><th SCOPE='col'>CANNABINOIDS TOTAL</th>";
+        echo "<th SCOPE=\"col\">PERCENT</th><th SCOPE=\"col\">MG/ML</th></tr></thead><tbody>";
+        echo "<tr><th scope='row'>Max Active THC</th><td>" . get_post_meta($post->ID, 'simple_product_max_active_thc', true) . "</th>";
+        echo "<td>" . get_post_meta($post->ID, 'simple_product_max_active_thc_ml', true) . "</td></tr>";
+    }
+    if ($active_cbd) {
+        echo "<tr><th scope='row'>T.Active Cannabinoids</th><td>" . get_post_meta($post->ID, 'simple_product_t_active_cannabinoids', true) . "</th>";
+        echo "<td>" . get_post_meta($post->ID, 'simple_product_max_active_cbd_ml', true) . "</td></tr>";
+    }
+    if ($t_active_cannabinoids) {
+        echo "<tr><th scope='row'>T.Active Cannabinoids</th><td>" . get_post_meta($post->ID, 'simple_product_t_active_cannabinoids', true) . "</th>";
+        echo "<td>" . get_post_meta($post->ID, 'simple_product_t_active_cannabinoids_ml', true) . "</td></tr>";
+    }
+    if ($total_cannabinoids) {
+        echo "<tr><th scope='row'>Total Cannabinoids</th><td>" . get_post_meta($post->ID, 'simple_product_total_cannabinoids', true) . "</th>";
+        echo "<td>" . get_post_meta($post->ID, 'simple_product_total_cannabinoids_ml', true) . "</td></tr>";
+        echo "<tr><td colspan=\"3\"><a href=\"" . get_post_meta($post->ID, 'simple_product_lab_report', true) . "\">Lab Report </a></td></tr>";
+        echo "</tbody></table>";
+    };
+}
+
+add_action('woocommerce_single_product_summary', 'display_table_single_product_table', 35);

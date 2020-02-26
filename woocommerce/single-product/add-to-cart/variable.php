@@ -64,9 +64,6 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
                 </div>
             </div>
         </div>
-        <div class="variation_price">
-            <div class="woocommerce-variation single_variation"></div>
-        </div>
         <div class="colorados_finest_submit">
             <button type="submit"
                     class="btn btn-warning btn-lg"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
@@ -76,6 +73,9 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
             <input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>"/>
             <input type="hidden" name="product_id" value="<?php echo absint($product->get_id()); ?>"/>
             <input type="hidden" name="variation_id" class="variation_id" value="0"/>
+        </div>
+        <div class="variation_price">
+            <div class="woocommerce-variation single_variation"></div>
         </div>
 
     <?php endif; ?>

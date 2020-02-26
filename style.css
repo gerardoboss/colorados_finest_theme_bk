@@ -1566,6 +1566,7 @@ footer .footer_footer {
 
 .variation_price .price {
 	display: unset !important;
+	margin: unset !important;
 }
 
 .variation_price .price_title {
@@ -1578,6 +1579,11 @@ footer .footer_footer {
 	margin-right: 1rem !important;
 }
 
+.colorados_finest_submit {
+	margin-top: 2rem;
+	margin-bottom: 3rem;
+}
+
 .product_title, .entry-title {
 	font-weight: bold !important;
 	font-size: 3rem !important;
@@ -1587,4 +1593,26 @@ footer .footer_footer {
 .table_products {
 	font-size: 1rem !important;
 	margin-top: 1rem;
+}
+
+.product_table {
+	margin-top: 2rem !important;
+}
+
+.product_table td {
+	text-align: center;
+}
+
+.simple_submit_button {
+	clear: both;
+	margin-top: 4rem !important;
+}
+
+.quantity .qty {
+	background-color: white;
+	box-shadow: unset;
+	border: 1px solid #aaa;
+	border-radius: 1em;
+	padding: .6em 1.4em .5em .8em !important;
+	font-size: 16px;
 }
