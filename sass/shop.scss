@@ -1,10 +1,11 @@
-.shop_page{
+.shop_page {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-self: center;
   justify-content: center;
-  .product{
+
+  .product {
     display: flex;
     flex-direction: column;
     padding: 3rem;
@@ -13,10 +14,19 @@
     justify-content: center;
     text-align: center;
     border-radius: 5px;
-    a, a:visited{
-      color: $coloradosPreHeaderGreen;
+    font-weight: 900 !important;
+
+    h2 {
+      font-weight: bold;
     }
-    img{
+
+    a, a:visited {
+      color: $coloradosYellow;
+      font-family: Gotham, Arial, Helvetica, sans-serif;
+      font-weight: 900 !important;
+    }
+
+    img {
       width: 80%;
       height: auto;
       vertical-align: middle;
@@ -24,14 +34,57 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+    .product_price_bar {
+      display: flex;
+      font-weight: bold !important;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+
+      a, a:visited {
+        color: $coloradosYellow;
+      }
+    }
   }
-  .product:hover{
+
+  .product:hover {
     background-color: whitesmoke;
-    -webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.2);
-    box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.2);
-    a{
+    -webkit-box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+
+    a {
       text-decoration: none;
     }
+  }
+
+  .balm, .chapstick, .full-spectrum-cbd, .isolate-cbd-zero-thc, .massage-oil, .unscented-lotion {
+    background-repeat: no-repeat;
+    background-position: left top;
+  }
+
+  .balm {
+    background-image: url('images/balm-bg.png');
+  }
+
+  .chapstick {
+    background-image: url('images/chapstick-bg.png');
+  }
+
+  .full-spectrum-cbd {
+    background-image: url('images/full-spectrum_cbd-bg.png');
+  }
+
+  .isolate-cbd-zero-thc {
+    background-image: url('images/isolate_thc-bg.png');
+  }
+
+  .massage-oil {
+    background-image: url('images/massage_oil-bg.png');
+  }
+
+  .unscented-lotion {
+    background-image: url('images/unscenter_lotion-bg.png');
   }
 }

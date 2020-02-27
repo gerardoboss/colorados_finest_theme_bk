@@ -58,6 +58,7 @@ remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_di
 remove_action('woocommerce_after_single_product_summary', 'storefront_upsell_display', 15);
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
 remove_action('woocommerce_after_single_product_summary', 'storefront_single_product_pagination', 30);
+remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 
 /**
  * @snippet       Add Custom Field to Product Variations - WooCommerce
@@ -604,3 +605,48 @@ function display_table_single_product_table()
 }
 
 add_action('woocommerce_single_product_summary', 'display_table_single_product_table', 35);
+
+function display_prefooter()
+{
+    echo "Hola Mundo";
+}
+
+add_action('pre_footer_display', 'display_prefooter');
+
+function display_coupons()
+{
+    $args = array(
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order' => 'asc',
+        'post_type' => 'shop_coupon',
+        'post_status' => 'publish',
+    );
+
+    $coupons = get_posts($args);
+
+    ?>
+    <div class="coupon_bar"><?php
+    foreach ($coupons as $coupon) {
+        ?>
+
+        <div class="cf_coupon">
+            Use code:
+            <div class="code">
+                <?php
+                echo $coupon->post_title;
+                ?>
+            </div>
+            on checkout to:
+            <div class="coupon_desk">
+                <?php
+                echo $coupon->post_excerpt;
+                ?>
+            </div>
+        </div>
+        <?php
+    }
+    ?> </div><?php
+}
+
+add_action('woocommerce_archive_description', 'display_coupons');

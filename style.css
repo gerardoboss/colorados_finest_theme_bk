@@ -971,6 +971,13 @@ object {
 
 @font-face {
 	font-family: 'Gotham';
+	src: url("fonts/Gotham-Ultra.otf") format("opentype");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham';
 	src: url("fonts/Gotham-Light.otf") format("opentype");
 	font-weight: 100;
 	font-style: normal;
@@ -981,6 +988,10 @@ object {
 	src: url("fonts/Gibson-regular.ttf") format("truetype");
 	font-weight: normal;
 	font-style: normal;
+}
+
+.btn {
+	font-family: Gotham, Arial, Helvetica, sans-serif;
 }
 
 .row {
@@ -1424,10 +1435,17 @@ footer .footer_footer {
 	justify-content: center;
 	text-align: center;
 	border-radius: 5px;
+	font-weight: 900 !important;
+}
+
+.shop_page .product h2 {
+	font-weight: bold;
 }
 
 .shop_page .product a, .shop_page .product a:visited {
-	color: #4cb051;
+	color: #FABC1E;
+	font-family: Gotham, Arial, Helvetica, sans-serif;
+	font-weight: 900 !important;
 }
 
 .shop_page .product img {
@@ -1439,6 +1457,18 @@ footer .footer_footer {
 	margin-right: auto;
 }
 
+.shop_page .product .product_price_bar {
+	display: flex;
+	font-weight: bold !important;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.shop_page .product .product_price_bar a, .shop_page .product .product_price_bar a:visited {
+	color: #FABC1E;
+}
+
 .shop_page .product:hover {
 	background-color: whitesmoke;
 	-webkit-box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
@@ -1448,6 +1478,35 @@ footer .footer_footer {
 
 .shop_page .product:hover a {
 	text-decoration: none;
+}
+
+.shop_page .balm, .shop_page .chapstick, .shop_page .full-spectrum-cbd, .shop_page .isolate-cbd-zero-thc, .shop_page .massage-oil, .shop_page .unscented-lotion {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.shop_page .balm {
+	background-image: url("images/balm-bg.png");
+}
+
+.shop_page .chapstick {
+	background-image: url("images/chapstick-bg.png");
+}
+
+.shop_page .full-spectrum-cbd {
+	background-image: url("images/full-spectrum_cbd-bg.png");
+}
+
+.shop_page .isolate-cbd-zero-thc {
+	background-image: url("images/isolate_thc-bg.png");
+}
+
+.shop_page .massage-oil {
+	background-image: url("images/massage_oil-bg.png");
+}
+
+.shop_page .unscented-lotion {
+	background-image: url("images/unscenter_lotion-bg.png");
 }
 
 /*--------------------------------------------------------------
@@ -1615,4 +1674,20 @@ footer .footer_footer {
 	border-radius: 1em;
 	padding: .6em 1.4em .5em .8em !important;
 	font-size: 16px;
+}
+
+/*--------------------------------------------------------------
+# Single Product
+----------------------------------------------*/
+.coupon_bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.coupon_bar .cf_coupon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 400px;
 }

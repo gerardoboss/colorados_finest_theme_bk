@@ -7,6 +7,13 @@
 
 @font-face {
   font-family: 'Gotham';
+  src: url('fonts/Gotham-Ultra.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham';
   src: url('fonts/Gotham-Light.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
@@ -17,6 +24,10 @@
   src: url('fonts/Gibson-regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+.btn {
+  font-family: Gotham, Arial, Helvetica, sans-serif;
 }
 
 .row {

@@ -1,0 +1,12 @@
+.coupon_bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  .cf_coupon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+  }
+}
