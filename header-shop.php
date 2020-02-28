@@ -37,43 +37,77 @@
             <div class="col-md-2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 social_logos"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/facebook.png" alt="Facebook"></div>
-                        <div class="col-md-3 social_logos"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/twitter.png" alt="Twitter"></div>
-                        <div class="col-md-3 social_logos"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/instagram.png" alt="Instagram"></div>
-                        <div class="col-md-3 social_logos"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/youtube.png" alt="Youtube"></div>
+                        <div class="col-md-3 social_logos"><img
+                                    src="<?php echo get_stylesheet_directory_uri() ?>/images/facebook.png"
+                                    alt="Facebook"></div>
+                        <div class="col-md-3 social_logos"><img
+                                    src="<?php echo get_stylesheet_directory_uri() ?>/images/twitter.png" alt="Twitter">
+                        </div>
+                        <div class="col-md-3 social_logos"><img
+                                    src="<?php echo get_stylesheet_directory_uri() ?>/images/instagram.png"
+                                    alt="Instagram"></div>
+                        <div class="col-md-3 social_logos"><img
+                                    src="<?php echo get_stylesheet_directory_uri() ?>/images/youtube.png" alt="Youtube">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-center">
-                <a href="/"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorados_finest.png" alt="User"></a>
+            <div class="col-md-6 text-center main_logo">
+                <a href="/"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorados_finest.png"
+                                 alt="User"></a>
             </div>
             <div class="col-md-2 text-center">
-                <button class="btn btn-outline-warning" onclick="window.location.href='shop'">OUR PRODUCTS</button>
+                <div class="dropdown">
+                    <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        OUR PRODUCTS
+                    </button>
+                    <?php do_action('menu_dropdown_shop') ?>
+                </div>
             </div>
             <div class="col-md-2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 product_items"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/user.png" alt="User"></div>
+                        <div class="col-md-4 product_items"><img
+                                    src="<?php echo get_stylesheet_directory_uri() ?>/images/user.png" alt="User"></div>
                         <div class="col-md-4 product_items">
-                            <?php if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+                            <?php if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
 
                                 $count = WC()->cart->cart_contents_count;
-                                ?><a   href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+                                ?><a   href="<?php echo wc_get_cart_url(); ?>"
+                                       title="<?php _e('View your shopping cart'); ?>">
                                 <img src="<?php echo get_stylesheet_directory_uri() ?>/images/cart.png" alt="Cart">
                                 <?php
-                                if ( $count > 0 ) {
+                                if ($count > 0) {
                                     ?>
-                                    <span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+                                    <span class="cart-contents-count"><?php echo esc_html($count); ?></span>
                                     <?php
                                 }
                                 ?></a>
 
                             <?php } ?>
                         </div>
-                        <div class="col-md-4 product_items"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/menu.png" alt="Menu">
+                        <div class="col-md-4 product_items">
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/menu.png" alt="Menu">
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row_icons">
+            <div class="icon">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/header_images/100_natural_growing.png"
+                     alt="Menu">
+            </div>
+            <div class="icon">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/header_images/lab_test.png" alt="Menu">
+            </div>
+            <div class="icon">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/header_images/made_usa.png" alt="Menu">
+            </div>
+            <div class="icon">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/header_images/non_gmo_hemp.png"
+                     alt="Menu">
             </div>
         </div>
     </div>

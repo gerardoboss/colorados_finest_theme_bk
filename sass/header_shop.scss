@@ -1,13 +1,15 @@
 //Header Styles
 .cart-contents:before {
-  font-size:28px;
-  font-style:normal;
-  font-weight:400;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
   vertical-align: text-top;
 }
+
 .cart-contents:hover {
   text-decoration: none;
 }
+
 .cart-contents-count {
   color: #fff;
   background-color: #2ecc71;
@@ -21,4 +23,12 @@
   margin-left: 1rem;
   font-size: 0.8rem;
   font-weight: 300;
+}
+
+.row_icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }

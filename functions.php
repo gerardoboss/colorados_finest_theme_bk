@@ -650,3 +650,23 @@ function display_coupons()
 }
 
 add_action('woocommerce_archive_description', 'display_coupons');
+
+
+function list_products_for_dropdown_menu()
+{
+    $args = array(
+        'exclude' => array(115, 114, 112),
+    );
+    $products = wc_get_products($args);
+    ?>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <?php foreach ($products as $product) {
+            ?>
+            <a class="dropdown-item" href="<?php echo $product->get_slug(); ?>"><?php echo $product->get_name(); ?></a>
+        <?php } ?>
+    </div>
+    <?php
+}
+
+add_action('menu_dropdown_shop', 'list_products_for_dropdown_menu');
+add_action('menu_dropdown', 'list_products_for_dropdown_menu');

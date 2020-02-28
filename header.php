@@ -57,7 +57,13 @@
                                  alt="User"></a>
             </div>
             <div class="col-md-2 text-center">
-                <button class="btn btn-outline-warning" onclick="window.location.href='shop'">OUR PRODUCTS</button>
+                <div class="dropdown">
+                    <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        OUR PRODUCTS
+                    </button>
+                    <?php do_action('menu_dropdown') ?>
+                </div>
             </div>
             <div class="col-md-2">
                 <div class="container">

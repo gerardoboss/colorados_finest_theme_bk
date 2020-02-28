@@ -1019,17 +1019,17 @@ body.woocommerce #primary {
 	color: #4cb051;
 }
 
+.main_logo {
+	display: flex;
+	justify-content: center;
+}
+
 .header {
 	background-color: green;
 	padding: 1rem;
 	background-image: url("images/herowallpaper.jpg");
 	background-repeat: none;
 	background-size: cover;
-}
-
-.header .main_logo {
-	display: flex;
-	justify-content: center;
 }
 
 .header .more_products {
@@ -1536,6 +1536,14 @@ footer .footer_footer {
 	margin-left: 1rem;
 	font-size: 0.8rem;
 	font-weight: 300;
+}
+
+.row_icons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 }
 
 /*--------------------------------------------------------------

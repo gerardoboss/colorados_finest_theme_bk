@@ -55,6 +55,11 @@ body.woocommerce #primary {
   color: $coloradosPreHeaderGreen;
 }
 
+.main_logo {
+  display: flex;
+  justify-content: center;
+}
+
 .header {
   background-color: green;
   padding: 1rem;
@@ -62,10 +67,6 @@ body.woocommerce #primary {
   background-repeat: none;
   background-size: cover;
 
-  .main_logo {
-    display: flex;
-    justify-content: center;
-  }
 
   .more_products {
     height: 500px;
