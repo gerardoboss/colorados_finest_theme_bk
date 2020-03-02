@@ -7,6 +7,17 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 400px;
+    padding: 2rem;
+    background-color: $coloradosGray;
+    margin-top: 1rem;
+    border-right: 5px;
+    width: 300px;
+    font-family: Gotham, Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+
+    .code {
+      font-size: 1.3rem;
+      color: $coloradosPreHeaderGreen;
+    }
   }
 }

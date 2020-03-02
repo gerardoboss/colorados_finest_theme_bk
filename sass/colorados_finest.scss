@@ -222,11 +222,21 @@ body.woocommerce #primary {
     font-weight: 300;
 
     .shop_all_products {
+      display: flex;
+      flex-direction: row;
       color: $coloradosOrange;
       font-weight: bold;
       font-size: 1rem;
       margin-top: 1rem;
       text-align: right;
+      align-items: center;
+      justify-content: flex-end;
+
+      img {
+        float: right;
+        margin-left: 0.5rem;
+        display: flex;
+      }
     }
   }
 }
@@ -413,6 +423,10 @@ footer {
 
   .foo {
     padding: 2rem;
+
+    a, a:visited {
+      color: white !important;
+    }
 
     .footer {
       display: flex;

@@ -611,7 +611,7 @@ function display_prefooter()
     echo "Hola Mundo";
 }
 
-add_action('pre_footer_display', 'display_prefooter');
+//add_action('pre_footer_display', 'display_prefooter');
 
 function display_coupons()
 {
@@ -628,19 +628,26 @@ function display_coupons()
     ?>
     <div class="coupon_bar"><?php
     foreach ($coupons as $coupon) {
+        $coup = new WC_Coupon($coupon->post_title);
         ?>
 
         <div class="cf_coupon">
             Use code:
             <div class="code">
                 <?php
-                echo $coupon->post_title;
+                echo strtoupper($coup->get_code());
                 ?>
             </div>
-            on checkout to:
+            on checkout
             <div class="coupon_desk">
                 <?php
-                echo $coupon->post_excerpt;
+                echo $coup->get_description();
+                ?>
+            </div>
+            <div class="coupon_date">
+                <?php
+                $expiration_date = new DateTime($coup->get_date_expires());
+                echo "Expiration date. " . $expiration_date->format('Y-m-d');
                 ?>
             </div>
         </div>
@@ -670,3 +677,361 @@ function list_products_for_dropdown_menu()
 
 add_action('menu_dropdown_shop', 'list_products_for_dropdown_menu');
 add_action('menu_dropdown', 'list_products_for_dropdown_menu');
+
+function show_non_gmo()
+{
+    $cbd_vegan = get_post(138);
+    ?>
+    <div class="cbd_shop_now container-fluid">
+        <div class="row">
+            <div class="col-md-3 cbd_description">
+                <?php
+                echo str_replace(' ', "<br />", $cbd_vegan->post_title);
+                ?>
+                <div class="product_description">
+                    <?php
+                    echo $cbd_vegan->post_content;
+                    ?>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-warning" onclick="location.href='shop'">SHOP NOW</button>
+                </div>
+            </div>
+            <div class="col-md-9 cbd_video">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/cbd_prod_desc.png" alt="CBD"/>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+
+function show_amazing_products()
+{
+    $amazingProducts = get_post(142);
+    $amazingProducts2 = get_post(144);
+    ?>
+    <div class="cbd_amazing_products container">
+        <div class="row">
+            <div class="col-md-12 amazing_products">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/weMakeAmazingProducts.png" alt="CBD"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="first_paragraph">
+                            <?php
+                            echo $amazingProducts->post_content;
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/amazing_destillate.jpg"
+                             alt="destillate"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/amazing_thc.jpg" alt="THC"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/amazing_isolate.jpg"
+                             alt="Isolate"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/amazing_topicals.jpg"
+                             alt="Amazing Topicals"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="last_paragraph">
+                            <?php
+                            echo $amazingProducts2->post_content;
+                            ?>
+                            <div class="shop_all_products">
+                                SHOP ALL PRODUCTS
+                                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/next_button.gif"
+                                     alt="Buy Now"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+
+function power_to_hill()
+{
+    $powerToHeal = get_post(147);
+    ?>
+    <div class="power_to_heal container d-flex align-items-center">
+        <div class="col-md-8 d-flex">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/power_to_heal.jpg" alt="The Power To Heal"/>
+        </div>
+        <div class="col-md-4 d-flex">
+            <div class="power_to_heal_description">
+                <?php
+                echo $powerToHeal->post_content;
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function the_magic_cbd()
+{
+    $fullSpectrum = get_post(149);
+    $customerReview = get_post(151);
+    ?>
+    <div class="the_magic_cbd">
+        <div class="col-md-12 title">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/the_magic_cbd.png" alt="Magic of cbd"/>
+        </div>
+        <div class="spectrum">
+            <div class="full_spectrum">
+                <div class="full_spectrum_text">
+                    <div class="text">
+                        <?php
+                        echo $fullSpectrum->post_content;
+                        ?>
+                    </div>
+                    <div class="shopnow">
+                        <button class="btn btn-outline-light" onclick="location.href='shop'">SHOP NOW</button>
+                    </div>
+                </div>
+            </div>
+            <div class="customer_reviews">
+                <div class="customer_photo">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/customer.jpg" alt="Customer"/>
+                </div>
+                <div class="customer_review">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/reviews.jpg" alt="Customer"/>
+                    <div class="review">
+                        <?php
+                        echo $customerReview->post_content;
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="highest_quality">
+            <div class="cultivate">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/cultivate.jpg" alt="cultivate"/>
+            </div>
+            <div class="potency">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/potency.jpg" alt="potency"/>
+            </div>
+        </div>
+        <div class="highest_quality_procesing">
+            <div class="extract">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/extract.jpg" alt="Extract"/>
+            </div>
+            <div class="flavor">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/flavor.jpg" alt="Flavor"/>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function colorados_finest_advante()
+{
+    $coloradosFinestAdvantage = get_post(154);
+    ?>
+    <div class="colorados_finest_advantage">
+        <div class="logo"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorados_drop_logo.png"
+                               alt="Flavor"/></div>
+        <div class="title"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorados_advantage_title.png"
+                                alt="Flavor"/></div>
+        <div class="description">
+            <?php
+            echo $coloradosFinestAdvantage->post_content;
+            ?>
+        </div>
+        <div class="cta">
+            <button class="btn btn-outline-warning" onclick="location.href='shop'">SHOP NOW</button>
+        </div>
+    </div>
+    <?php
+}
+
+function not_for_humans()
+{
+    $notJustForHuman = get_post(156);
+    ?>
+    <div class="social_box">
+        <div class="not_for_human">
+            <div class="description">
+                <div class="title"><?php echo $notJustForHuman->post_title; ?></div>
+                <div class="pet_description">
+                    <?php echo $notJustForHuman->post_content; ?>
+                </div>
+            </div>
+            <div class="photo">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/notforhumans.jpg" alt="Flavor"/>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function site_survey()
+{
+    $surveyText = get_post(135);
+    ?>
+    <div class="take_care container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/take_care_vert.png"
+                                 alt="Take Care"
+                                 height="386" width="99"/>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 take_care_title">
+                                        <?php
+                                        echo $surveyText->post_title;
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 take_care_description">
+                                        <?php
+                                        echo $surveyText->post_content;
+                                        ?>
+                                        <div class="which_products text-center">
+                                            Which of our products is right for you?
+                                            <button class="btn btn-outline-warning">TAKE OUR SHORT SURVEY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/products_take_care.png" alt="Take Care"/>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function list_products_footer()
+{
+    $args = array(
+        'exclude' => array(115, 114, 112),
+    );
+    $products = wc_get_products($args);
+    ?>
+    <?php foreach ($products as $product) {
+    ?>
+    <li><a href="<?php echo $product->get_slug(); ?>"><?php echo $product->get_name(); ?></a></li>
+<?php } ?>
+    <?php
+}
+
+function featured_products()
+{
+    ?>
+    <div class="featured_products container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <!--                <div class="container">-->
+                <!--                    <div class="row">-->
+                <div class="col-md-12">
+                    <?php
+                    $params = array('posts_per_page' => 3, 'post_type' => 'product', 'product_cat' => 'showcase');
+                    $wc_query = new WP_Query($params);
+                    ?>
+                    <ul class="products">
+                        <?php if ($wc_query->have_posts()) : ?>
+                            <?php while ($wc_query->have_posts()) :
+                                $wc_query->the_post();
+                                $showcase_product = wc_get_product(get_the_ID());
+                                $product_attributes = get_post_meta(get_the_ID(), '_product_attributes');
+                                $product_id = ($product_attributes[0]['showcase_product']['value']);
+                                $product = wc_get_product($product_id);
+                                ?>
+                                <li class="product">
+                                    <div class="product_image">
+                                        <?php the_post_thumbnail(); ?>
+                                    </div>
+                                    <div class="product_description">
+                                        <h3 class="colorados_product_title">
+                                            <a href="<?php the_permalink($product_id); ?>"><?php the_title() ?></a>
+                                        </h3>
+                                        <div class="product_sizes">
+                                            <?php
+                                            $strength = $product->get_variation_attributes()["pa_strength"];
+                                            echo min($strength) . " - " . max($strength);
+                                            ?>
+                                        </div>
+                                        <div class="product_price">
+                                            <div class="price_title">STARTING AT</div>
+                                            <div class="price">
+                                                <?php echo $product->get_price_html(); ?>
+                                            </div>
+                                        </div>
+                                        <div class="shop_now">
+                                            <button class="btn btn-outline-light"
+                                                    onclick="location.href='<?php the_permalink($product_id); ?>'">SHOP
+                                                NOW
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endwhile; ?>
+                        <?php else : ?>
+                            <li><?php _e('No Products'); ?></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+add_action('footer_list', 'list_products_footer');
+add_action('site_survey', 'site_survey');
+add_action('show_non_gmo', 'show_non_gmo');
+add_action('show_amazing_products', 'show_amazing_products');
+add_action('show_power_to_hill', 'power_to_hill');
+add_action('the_magic_cbd', 'the_magic_cbd');
+add_action('colorados_advantage', 'colorados_finest_advante');
+add_action('not_for_human', 'not_for_humans');
+add_action('after_product', 'show_non_gmo', 10);
+add_action('after_product', 'power_to_hill', 11);
+add_action('page_menu_bottom', 'featured_products');
+add_action('product_showcase', 'featured_products');
+
+function excerpt_readmore($more)
+{
+    global $post;
+    return '... <a href="' . get_permalink($post->ID) . '" class="readmore">' . 'Read More' . '</a>';
+}
+
+add_filter('excerpt_more', 'excerpt_readmore');

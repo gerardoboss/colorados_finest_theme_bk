@@ -817,11 +817,6 @@ a:hover, a:active {
 	display: block;
 }
 
-.post,
-.page {
-	margin: 0 0 1.5em;
-}
-
 .updated:not(.published) {
 	display: none;
 }
@@ -1183,11 +1178,21 @@ body.woocommerce #primary {
 }
 
 .cbd_amazing_products .first_paragraph .shop_all_products, .cbd_amazing_products .last_paragraph .shop_all_products {
+	display: flex;
+	flex-direction: row;
 	color: #FBC63F;
 	font-weight: bold;
 	font-size: 1rem;
 	margin-top: 1rem;
 	text-align: right;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.cbd_amazing_products .first_paragraph .shop_all_products img, .cbd_amazing_products .last_paragraph .shop_all_products img {
+	float: right;
+	margin-left: 0.5rem;
+	display: flex;
 }
 
 .power_to_heal {
@@ -1370,6 +1375,10 @@ footer .footer_margin {
 
 footer .foo {
 	padding: 2rem;
+}
+
+footer .foo a, footer .foo a:visited {
+	color: white !important;
 }
 
 footer .foo .footer {
@@ -1697,5 +1706,16 @@ footer .footer_footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 400px;
+	padding: 2rem;
+	background-color: #EDEDED;
+	margin-top: 1rem;
+	border-right: 5px;
+	width: 300px;
+	font-family: Gotham, Arial, Helvetica, sans-serif;
+	font-size: 0.8rem;
+}
+
+.coupon_bar .cf_coupon .code {
+	font-size: 1.3rem;
+	color: #4cb051;
 }
