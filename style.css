@@ -1719,3 +1719,31 @@ footer .footer_footer {
 	font-size: 1.3rem;
 	color: #4cb051;
 }
+
+/*--------------------------------------------------------------
+# Single blog
+----------------------------------------------*/
+.post_short {
+	display: flex;
+	flex-direction: row;
+}
+
+.post_short .post {
+	display: flex;
+	color: white;
+	flex: 1 1;
+	margin: 1rem;
+	padding: 1rem;
+	flex-direction: column;
+	border-radius: 10px;
+	background-size: cover;
+	width: 400px;
+	align-content: flex-end;
+	font-size: 0.8rem;
+	padding-top: 10rem;
+	align-content: flex-end;
+}
+
+.post_short .post h1, .post_short .post h2, .post_short .post h3, .post_short .post h4, .post_short .post a, .post_short .post a:visited {
+	color: white;
+}

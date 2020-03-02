@@ -1035,3 +1035,4 @@ function excerpt_readmore($more)
 }
 
 add_filter('excerpt_more', 'excerpt_readmore');
+
