@@ -48,7 +48,7 @@
             </div>
             <div class="footer_learn">
                 <ul>
-                    <li>LEARN ABOUT CBD</li>
+                    <li><a href="blog">ABOUT CBD</a></li>
                     <li><a href="about-us">About Colorado's Finest</a></li>
                     <li>Isolate Vs Distillate</li>
                     <li>Endocannabinoid System</li>
@@ -65,8 +65,39 @@
                     <!--                    <li>My Account</li>-->
                     <li><a href="privacy-policy">Privacy Policy</a></li>
                     <li><a href="return-policy">Shipping & Returns</a></li>
+                    <li class="heading">Follow Us</li>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 social_logos"><a
+                                    href="https://www.facebook.com/Colorados-Finest-CBD-Site-109879910456359"
+                                    target="_blank"><img
+                                        src="<?php echo get_stylesheet_directory_uri() ?>/images/facebook.svg"
+                                        alt="Facebook" class="self-align-image"></a></div>
+                        <div class="col-md-3  col-sm-3 social_logos"><a href="https://twitter.com/ColoradosCbd"
+                                                                        target="_blank"><img
+                                        src="<?php echo get_stylesheet_directory_uri() ?>/images/twitter.svg"
+                                        alt="Twitter"></a>
+                        </div>
+                        <div class="col-md-3  col-sm-3 social_logos"><a
+                                    href="https://www.instagram.com/colorados_finest_cbd/" target="_blank"><img
+                                        src="<?php echo get_stylesheet_directory_uri() ?>/images/instagram.svg"
+                                        alt="Instagram" class="self-align-image"></a></div>
+                        <div class="col-md-3  col-sm-3 social_logos"><a
+                                    href="https://www.youtube.com/channel/UC39vzCcYqgOkP1UfXG2T2ww" target="_blank"><img
+                                        src="<?php echo get_stylesheet_directory_uri() ?>/images/youtube.svg"
+                                        alt="Youtube" class="self-align-image">
+                            </a>
+                        </div>
+                    </div>
+
+
                 </ul>
             </div>
+        </div>
+        <div class="visa-mastercard text-center d-flex justify-content-end pr-4 align-items-center">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/mastercard.svg"
+                 alt="We accept Visa/Mastercard" style="height:50px; width:auto; margin-right: 1rem">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/visa.svg" alt="We accept Visa/Mastercard"
+                 style="height:25px; width:auto;">
         </div>
     </div>
     <div class="footer_footer">

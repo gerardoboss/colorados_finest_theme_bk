@@ -1,0 +1,114 @@
+@media (max-width: 481px) {
+  .take_care {
+    padding: 1rem;
+  }
+  .spectrum {
+    flex-direction: column !important;
+    padding: 1rem;
+  }
+  .full_spectrum {
+    background-color: #FBBC1D !important;
+    background-image: unset !important;
+    text-align: center;
+
+  }
+  .highest_quality {
+    display: none;
+  }
+  .highest_quality_procesing {
+    display: none;
+  }
+  .review {
+    margin-top: 60px !important;
+    text-align: left !important;
+    font-size: 1rem;
+  }
+  .the_magic_cbd {
+    padding: 2rem 1rem !important;
+  }
+  .social_box {
+    .not_for_human {
+      .description {
+        flex-basis: unset !important;
+      }
+
+      .photo {
+        display: none !important;
+      }
+    }
+  }
+
+  footer {
+    .foo
+    .footer {
+      flex-direction: column;
+    }
+
+    ul {
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    .footer_menu {
+      margin-top: 1rem;
+    }
+  }
+  .row_icons {
+    display: none; // test
+  }
+  .coupon_bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .colorado_product {
+    flex-direction: column;
+    width: 95%;
+  }
+  .post_short {
+    flex-direction: column;
+  }
+}
+
+
+@media (min-width: 641px) {
+  .take_care {
+  }
+}
+
+@media (min-width: 961px) {
+}
+
+@media (min-width: 1025px) {
+}
+
+@media (min-width: 1281px) {
+}
+
+@media (max-width: 500px) {
+  .products {
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    .product {
+      .product_image {
+        img {
+          width: 200px;
+          height: auto;
+        }
+      }
+    }
+  }
+  .post_short {
+    flex-direction: column;
+
+    .post {
+      width: 300px;
+    }
+  }
+  .blogposts {
+    .posts {
+      grid-template-columns: 1fr;
+    }
+  }
+}

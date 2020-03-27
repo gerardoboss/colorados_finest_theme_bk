@@ -43,6 +43,7 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
                             'options' => $options,
                             'attribute' => $attribute_name,
                             'product' => $product,
+                            'class' => 'colorados_dropdown'
                         ));
                         //echo end($attribute_keys) === $attribute_name ? wp_kses_post(apply_filters('woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__('Clear', 'woocommerce') . '</a>')) : '';
                         ?>
@@ -65,9 +66,6 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
             </div>
         </div>
         <div class="colorados_finest_submit">
-            <button type="submit"
-                    class="btn btn-warning btn-lg"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
-
             <?php do_action('woocommerce_after_add_to_cart_button'); ?>
 
             <input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>"/>

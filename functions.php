@@ -1,17 +1,21 @@
 <?php
 
+add_filter('excerpt_length', function ($length) {
+    return 20;
+});
+
 /**
  * Lets load all the design styles
  */
-add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles', 100);
 function my_theme_enqueue_styles()
 {
+    wp_dequeue_style('storefront-child-style-css');
+    wp_deregister_style('storefront-child-style-css');
     wp_enqueue_style('bootstrap-style', get_stylesheet_directory_uri() . '/bootstrap/css/bootstrap.min.css');
     wp_enqueue_script('bootstrap-js', get_stylesheet_directory_uri() . '/bootstrap/js/bootstrap.bundle.min.js', array('jquery'));
     $parent_style = 'parent-style';
-    //wp_enqueue_style($parent_style, get_template_directory_uri()) . '/style.css';
-    wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style), wp_get_theme()->get('version'));
-    //wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/bootstrap/js/bootstrap.bundle.min.js', array('jquery'));
+    wp_enqueue_style('colorado-style', get_stylesheet_directory_uri() . 'style2.css', array($parent_style), wp_get_theme()->get('version'));
     wp_enqueue_script('colorados-finest', get_stylesheet_directory_uri() . '/colorado_scripts/colorado.js', array(), false, true);
 }
 
@@ -32,7 +36,6 @@ function custom_pre_get_posts_query($q)
 
 
     $q->set('tax_query', $tax_query);
-
 }
 
 add_action('woocommerce_product_query', 'custom_pre_get_posts_query');
@@ -84,7 +87,8 @@ add_action('woocommerce_variation_options_pricing', 'add_lab_report', 10, 3);
 
 function add_max_thc_field_backend($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'max_active_thc[' . $loop . ']',
             'class' => 'short',
             'label' => __('Max Active THC', 'woocommerce'),
@@ -95,7 +99,8 @@ function add_max_thc_field_backend($loop, $variation_data, $variation)
 
 function add_max_active_cbd($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'max_active_cbd[' . $loop . ']',
             'class' => 'short',
             'label' => __('Max Active CBD', 'woocommerce'),
@@ -106,7 +111,8 @@ function add_max_active_cbd($loop, $variation_data, $variation)
 
 function add_tactive_cannabinoids($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 't_active_cannabinoids[' . $loop . ']',
             'class' => 'short',
             'label' => __('T.Active Cannabinoids', 'woocommerce'),
@@ -117,7 +123,8 @@ function add_tactive_cannabinoids($loop, $variation_data, $variation)
 
 function add_total_cannabinoids($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'total_cannabinoids[' . $loop . ']',
             'class' => 'short',
             'label' => __('Total Cannabinoids', 'woocommerce'),
@@ -128,7 +135,8 @@ function add_total_cannabinoids($loop, $variation_data, $variation)
 
 function add_max_active_cbd_ml($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'max_active_cbd_ml[' . $loop . ']',
             'class' => 'short',
             'label' => __('Max Active CBD ML', 'woocommerce'),
@@ -139,10 +147,11 @@ function add_max_active_cbd_ml($loop, $variation_data, $variation)
 
 function add_max_active_thc_ml($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'max_active_thc_ml[' . $loop . ']',
             'class' => 'short',
-            'label' => __('Max Active THC', 'woocommerce'),
+            'label' => __('Max Active THC ML', 'woocommerce'),
             'value' => get_post_meta($variation->ID, 'max_active_thc_ml', true)
         )
     );
@@ -151,10 +160,11 @@ function add_max_active_thc_ml($loop, $variation_data, $variation)
 
 function add_t_active_cannabinoids_ml($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 't_active_cannabinoids_ml[' . $loop . ']',
             'class' => 'short',
-            'label' => __('Max Active CBD ML', 'woocommerce'),
+            'label' => __('Max Active Cannabinoids ML', 'woocommerce'),
             'value' => get_post_meta($variation->ID, 't_active_cannabinoids_ml', true)
         )
     );
@@ -162,7 +172,8 @@ function add_t_active_cannabinoids_ml($loop, $variation_data, $variation)
 
 function add_total_cannabinoids_ml($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'total_cannabinoids_ml[' . $loop . ']',
             'class' => 'short',
             'label' => __('Total Cannabinoids ML', 'woocommerce'),
@@ -173,7 +184,8 @@ function add_total_cannabinoids_ml($loop, $variation_data, $variation)
 
 function add_lab_report($loop, $variation_data, $variation)
 {
-    woocommerce_wp_text_input(array(
+    woocommerce_wp_text_input(
+        array(
             'id' => 'lab_report[' . $loop . ']',
             'class' => 'short',
             'label' => __('Lab Report', 'woocommerce'),
@@ -263,6 +275,7 @@ add_filter('woocommerce_available_variation', 'add_active_cannabinoids_data_ml')
 add_filter('woocommerce_available_variation', 'add_total_cannabinoids_data_ml');
 add_filter('woocommerce_available_variation', 'add_lab_report_display');
 
+
 function add_max_thc_data($variations)
 {
     $variations['max_active_thc'] = '<tr><td>Max Active THC:</td><td>' . get_post_meta($variations['variation_id'], 'max_active_thc', true) . '</td>';
@@ -313,7 +326,7 @@ function add_total_cannabinoids_data_ml($variations)
 
 function add_lab_report_display($variations)
 {
-    $variations['lab_report'] = '</tr><tr><td colspan="3"><a href="' . get_post_meta($variations['variation_id'], 'lab_report', true) . '">Lab Report</a></td></tr>';
+    $variations['lab_report'] = '</tr><tr><td colspan="3"><a href="' . get_post_meta($variations['variation_id'], 'lab_report', true) . '" target="_blank">VEW FULL REPORT</a></td></tr>';
     return $variations;
 }
 
@@ -565,18 +578,18 @@ add_action('woocommerce_process_product_meta', 'cf_save_simple_product_total_can
 function add_lab_report_display_simple_product()
 {
     global $post;
-// Check for the custom field value
+    // Check for the custom field value
     $product = wc_get_product($post->ID);
     $title = $product->get_meta('simple_product_lab_report');
     if ($title) {
-        echo '<a href="' . get_post_meta($post->ID, 'simple_product_lab_report', true) . '">Lab Report </a>';
+        echo '<a href="' . get_post_meta($post->ID, 'simple_product_lab_report', true) . '">VIEW FULL REPORT</a>';
     }
 }
 
 function display_table_single_product_table()
 {
     global $post;
-// Check for the custom field value
+    // Check for the custom field value
     $product = wc_get_product($post->ID);
     $active_thc = $product->get_meta('simple_product_max_active_thc');
     $active_cbd = $product->get_meta('simple_product_max_active_cbd');
@@ -599,7 +612,7 @@ function display_table_single_product_table()
     if ($total_cannabinoids) {
         echo "<tr><th scope='row'>Total Cannabinoids</th><td>" . get_post_meta($post->ID, 'simple_product_total_cannabinoids', true) . "</th>";
         echo "<td>" . get_post_meta($post->ID, 'simple_product_total_cannabinoids_ml', true) . "</td></tr>";
-        echo "<tr><td colspan=\"3\"><a href=\"" . get_post_meta($post->ID, 'simple_product_lab_report', true) . "\">Lab Report </a></td></tr>";
+        echo "<tr><td colspan=\"3\"><a href=\"" . get_post_meta($post->ID, 'simple_product_lab_report', true) . "\">VIEW FULL REPORT </a></td></tr>";
         echo "</tbody></table>";
     };
 }
@@ -632,23 +645,25 @@ function display_coupons()
         ?>
 
         <div class="cf_coupon">
-            Use code:
-            <div class="code">
-                <?php
-                echo strtoupper($coup->get_code());
-                ?>
-            </div>
-            on checkout
-            <div class="coupon_desk">
-                <?php
-                echo $coup->get_description();
-                ?>
-            </div>
-            <div class="coupon_date">
-                <?php
-                $expiration_date = new DateTime($coup->get_date_expires());
-                echo "Expiration date. " . $expiration_date->format('Y-m-d');
-                ?>
+            <div class="holder">
+                Use code:
+                <div class="code">
+                    <?php
+                    echo strtoupper($coup->get_code());
+                    ?>
+                </div>
+                at checkout
+                <div class="coupon_desk">
+                    <?php
+                    echo $coup->get_description();
+                    ?>
+                </div>
+                <div class="coupon_date">
+                    <?php
+                    $expiration_date = new DateTime($coup->get_date_expires());
+                    echo "Expiration date. " . $expiration_date->format('Y-m-d');
+                    ?>
+                </div>
             </div>
         </div>
         <?php
@@ -657,6 +672,42 @@ function display_coupons()
 }
 
 add_action('woocommerce_archive_description', 'display_coupons');
+
+
+function colorado_shop()
+{
+    ?>
+    <div class="colorado_finest shop container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/shop_header.png" alt="SHOP DISTILLATES"/>
+                <div class="content">
+                    <a href="#">
+                        <button class="btn btn-outline-warning btn-round-colorado">SHOP DISTILLATES</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/shop_header.png" alt="SHOP TOPICALSt"/>
+                <div class="content">
+                    <a href="#">
+                        <button class="btn btn-outline-warning btn-round-colorado">SHOP TOPICALS</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+//add_action('woocommerce_after_main_content', 'my_text', 20);
+
+function my_text()
+{
+    if (is_shop()) {
+        do_action('colorado_shop', 'colorado_shop');
+    }
+}
 
 
 function list_products_for_dropdown_menu()
@@ -694,11 +745,20 @@ function show_non_gmo()
                     ?>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-outline-warning" onclick="location.href='shop'">SHOP NOW</button>
+                    <button class="btn btn-outline-warning btn-round-colorado" onclick="location.href='shop'">SHOP NOW
+                    </button>
                 </div>
             </div>
-            <div class="col-md-9 cbd_video">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/cbd_prod_desc.png" alt="CBD"/>
+            <div class="col-md-9 cbd_video d-sm-flex d-md-flex d-xl-flex">
+                <h2>CBD</h2>
+
+
+                <video id="video1" controls="" poster="<?php echo get_stylesheet_directory_uri() ?>/images/poster.jpg">
+                    <source src="<?php echo get_stylesheet_directory_uri() ?>/images/smallvideo.mp4"/>
+                    Your browser does not support HTML5 video.
+                </video>
+
+
             </div>
         </div>
     </div>
@@ -714,7 +774,10 @@ function show_amazing_products()
     <div class="cbd_amazing_products container">
         <div class="row">
             <div class="col-md-12 amazing_products">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/weMakeAmazingProducts.png" alt="CBD"/>
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icon.png" class="icon"/>
+                <span>WE MAKE </span>
+                <span>AMAZING PRODUCTS</span>
+
             </div>
         </div>
         <div class="row">
@@ -760,9 +823,7 @@ function show_amazing_products()
                             echo $amazingProducts2->post_content;
                             ?>
                             <div class="shop_all_products">
-                                SHOP ALL PRODUCTS
-                                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/next_button.gif"
-                                     alt="Buy Now"/>
+                                <a href="/shop"> SHOP ALL PRODUCTS</a>
                             </div>
                         </div>
                     </div>
@@ -779,10 +840,10 @@ function power_to_hill()
     $powerToHeal = get_post(147);
     ?>
     <div class="power_to_heal container d-flex align-items-center">
-        <div class="col-md-8 d-flex">
+        <div class="col-md-8 d-md-flex">
             <img src="<?php echo get_stylesheet_directory_uri() ?>/images/power_to_heal.jpg" alt="The Power To Heal"/>
         </div>
-        <div class="col-md-4 d-flex">
+        <div class="col-md-4 col-sm-8 d-flex">
             <div class="power_to_heal_description">
                 <?php
                 echo $powerToHeal->post_content;
@@ -800,27 +861,28 @@ function the_magic_cbd()
     ?>
     <div class="the_magic_cbd">
         <div class="col-md-12 title">
-            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/the_magic_cbd.png" alt="Magic of cbd"/>
+            THE MAGIC OF CBD
         </div>
         <div class="spectrum">
             <div class="full_spectrum">
+
                 <div class="full_spectrum_text">
+                    <div class="tagline">FULL <span>SPECTRUM<br/> POTENTIAL</span></div>
                     <div class="text">
                         <?php
                         echo $fullSpectrum->post_content;
                         ?>
                     </div>
                     <div class="shopnow">
-                        <button class="btn btn-outline-light" onclick="location.href='shop'">SHOP NOW</button>
+                        <button class="btn btn-outline-light btn-round-colorado" onclick="location.href='shop'">SHOP
+                            NOW
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="customer_reviews">
-                <div class="customer_photo">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/customer.jpg" alt="Customer"/>
-                </div>
+                <div class="text">CUSTOMER <span>REVIEWS</span></div>
                 <div class="customer_review">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/reviews.jpg" alt="Customer"/>
                     <div class="review">
                         <?php
                         echo $customerReview->post_content;
@@ -829,20 +891,29 @@ function the_magic_cbd()
                 </div>
             </div>
         </div>
-        <div class="highest_quality">
-            <div class="cultivate">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/cultivate.jpg" alt="cultivate"/>
-            </div>
-            <div class="potency">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/potency.jpg" alt="potency"/>
+
+
+        <div class="row highest_quality_ingredients">
+            <div class="container">
+                <div class="col-md-4 first"><h3>HIGHEST QUALITY<br/>INGREDIENTS</h3></div>
+                <div class="col-md-4"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/cultivate1.jpg"
+                                           alt="cultivate"/>
+                    <span>CULTIVATE</span></div>
+                <div class="col-md-4"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/potency1.jpg"
+                                           alt="potency"/>
+                    <span>POTENCY</span></div>
             </div>
         </div>
-        <div class="highest_quality_procesing">
-            <div class="extract">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/extract.jpg" alt="Extract"/>
-            </div>
-            <div class="flavor">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/flavor.jpg" alt="Flavor"/>
+
+        <div class="row highest_quality_ingredients">
+            <div class="container">
+                <div class="col-md-4 first"><h3>HIGHEST QUALITY<br/>PROCESSING</h3></div>
+                <div class="col-md-4"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/extract1.jpg"
+                                           alt="extract"/>
+                    <span>EXTRACT</span></div>
+                <div class="col-md-4"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/flavor1.jpg"
+                                           alt="flavor"/>
+                    <span>FLAVOR</span></div>
             </div>
         </div>
     </div>
@@ -854,18 +925,19 @@ function colorados_finest_advante()
     $coloradosFinestAdvantage = get_post(154);
     ?>
     <div class="colorados_finest_advantage">
-        <div class="logo"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorados_drop_logo.png"
+        <div class="logo"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/icon.png"
                                alt="Flavor"/></div>
-        <div class="title"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorados_advantage_title.png"
-                                alt="Flavor"/></div>
         <div class="description">
             <?php
             echo $coloradosFinestAdvantage->post_content;
             ?>
         </div>
         <div class="cta">
-            <button class="btn btn-outline-warning" onclick="location.href='shop'">SHOP NOW</button>
+            <button class="btn btn-outline-warning btn-round-colorado" onclick="location.href='shop'">SHOP NOW</button>
         </div>
+
+        <div class="seed"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/advantage_seed.png"
+                               alt="Seeds"/></div>
     </div>
     <?php
 }
@@ -877,9 +949,10 @@ function not_for_humans()
     <div class="social_box">
         <div class="not_for_human">
             <div class="description">
-                <div class="title"><?php echo $notJustForHuman->post_title; ?></div>
+
                 <div class="pet_description">
                     <?php echo $notJustForHuman->post_content; ?>
+                    <?php echo '<a href="' . get_permalink($notJustForHuman->ID) . '" style="font-weight:bold; color:#4cb051">' . 'Read More' . '</a>'; ?>
                 </div>
             </div>
             <div class="photo">
@@ -896,32 +969,26 @@ function site_survey()
     ?>
     <div class="take_care container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2 d-none d-sm-block d-md-block d-xl-block">
                             <img src="<?php echo get_stylesheet_directory_uri() ?>/images/take_care_vert.png"
-                                 alt="Take Care"
-                                 height="386" width="99"/>
+                                 alt="Take Care"/>
                         </div>
                         <div class="col-md-9">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12 take_care_title">
-                                        <?php
-                                        echo $surveyText->post_title;
-                                        ?>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-12 take_care_description">
                                         <?php
                                         echo $surveyText->post_content;
                                         ?>
-                                        <div class="which_products text-center">
-                                            Which of our products is right for you?
-                                            <button class="btn btn-outline-warning">TAKE OUR SHORT SURVEY</button>
-                                        </div>
+                                        <span>Which of our products is right for you?</span>
+
+                                        <button class="btn btn-outline-warning btn-round-colorado">TAKE OUR SHORT
+                                            SURVEY
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
@@ -929,13 +996,40 @@ function site_survey()
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <img src="<?php echo get_stylesheet_directory_uri() ?>/images/products_take_care.png" alt="Take Care"/>
             </div>
         </div>
     </div>
     <?php
 }
+
+
+function colorado_finest()
+{
+    ?>
+    <div class="colorado_finest container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorado_finest_left.jpg"
+                     alt="Colorado Finest"/>
+                <div class="content">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icon.png" class="icon"/>
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorado_finest_left_logo.png"
+                         alt="Colorado Finest"/>
+                    <button class="btn btn-outline-warning btn-round-colorado" onclick="location.href='shop'">SHOP NOW
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/images/colorado_finest.jpg"
+                     alt="Colorado Finest"/>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
 
 function list_products_footer()
 {
@@ -984,7 +1078,7 @@ function featured_products()
                                         <div class="product_sizes">
                                             <?php
                                             $strength = $product->get_variation_attributes()["pa_strength"];
-                                            echo min($strength) . " - " . max($strength);
+                                            echo max($strength) . " - " . min($strength);
                                             ?>
                                         </div>
                                         <div class="product_price">
@@ -994,7 +1088,7 @@ function featured_products()
                                             </div>
                                         </div>
                                         <div class="shop_now">
-                                            <button class="btn btn-outline-light"
+                                            <button class="btn btn-outline-light btn-round-colorado"
                                                     onclick="location.href='<?php the_permalink($product_id); ?>'">SHOP
                                                 NOW
                                             </button>
@@ -1015,6 +1109,8 @@ function featured_products()
     <?php
 }
 
+//add_action('colorado_shop', 'colorado_shop');
+add_action('colorado_finest', 'colorado_finest');
 add_action('footer_list', 'list_products_footer');
 add_action('site_survey', 'site_survey');
 add_action('show_non_gmo', 'show_non_gmo');
@@ -1028,11 +1124,18 @@ add_action('after_product', 'power_to_hill', 11);
 add_action('page_menu_bottom', 'featured_products');
 add_action('product_showcase', 'featured_products');
 
+
 function excerpt_readmore($more)
 {
     global $post;
     return '... <a href="' . get_permalink($post->ID) . '" class="readmore">' . 'Read More' . '</a>';
 }
 
-add_filter('excerpt_more', 'excerpt_readmore');
+//add_filter('excerpt_more', 'excerpt_readmore');
+
+add_filter('excerpt_length', 'your_prefix_excerpt_length');
+function your_prefix_excerpt_length()
+{
+    return 20;
+}
 

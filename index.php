@@ -16,7 +16,7 @@
 
 get_header();
 ?>
-<?php do_action('site_survey') ?>
+<?php /**do_action('site_survey')*/ ?>
 <?php do_action('product_showcase') ?>
 <?php do_action('show_non_gmo') ?>
 <?php do_action('show_amazing_products') ?>
@@ -24,5 +24,7 @@ get_header();
 <?php do_action('the_magic_cbd') ?>
 <?php do_action('colorados_advantage') ?>
 <?php do_action('not_for_human') ?>
+<?php do_action('colorado_finest') ?>
+
 <?php
 get_footer();

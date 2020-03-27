@@ -19,6 +19,8 @@
   .colorado_variation {
     margin-right: 0.5rem;
     display: flex;
+	  
+
 
     .value {
 
@@ -74,12 +76,14 @@
   }
 
   align-items: flex-end;
+	
 }
 
 .variation_price {
   display: flex;
   color: $coloradosYellow !important;
-  margin-top: 1rem;
+  margin-top: 0 !important;
+  margin-bottom: 25px;
   font-size: 2.5rem;
   font-weight: bold;
 
@@ -101,8 +105,8 @@
 }
 
 .colorados_finest_submit {
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  /*margin-top: 2rem;
+  margin-bottom: 3rem;*/
 }
 
 .product_title, .entry-title {
@@ -110,6 +114,13 @@
   font-size: 3rem !important;
   font-weight: bold !important;
 }
+
+.woocommerce-variation-price {
+	margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+
 
 .table_products {
   font-size: 1rem !important;
@@ -136,5 +147,18 @@
   border-radius: 1em;
   padding: .6em 1.4em .5em .8em !important;
   font-size: 16px;
+}
+
+.single-product div.product form.cart {
+	margin-bottom: -20px;	
+}
+
+
+	.single_variation .woocommerce-Price-amount {
+		padding-left: 0 !important;
+	}
+
+.slick-slide img {
+	width: 100%;
 }
 

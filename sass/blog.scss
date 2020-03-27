@@ -17,8 +17,79 @@
     padding-top: 10rem;
     align-content: flex-end;
 
-    h1, h2, h3, h4, a, a:visited {
+    h1,
+    h2,
+    h3,
+    h4,
+    a,
+    a:visited {
       color: white;
+    }
+  }
+}
+
+.blogposts {
+	
+	background:#f0fafc;
+	
+  a {
+    color: black !important;
+  }
+
+  .the_magic_of_cbd {
+    display: flex;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    margin-bottom: 2rem;
+
+
+    .post_item {
+      background-color: whitesmoke;
+      -webkit-box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 3px 0px 5px 0px rgba(0, 0, 0, 0.2); // test
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+
+
+      .post_thumb {
+        display: flex;
+      }
+
+      .title {
+        font-weight: bold;
+      }
+
+      .post_description {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .read_more {
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+          color: $coloradosYellow !important;
+          font-weight: bold !important;
+          font-family: Gotham, Arial, Helvetica, sans-serif;
+          font-size: 1.3rem;
+        }
+      }
     }
   }
 }

@@ -12,5 +12,13 @@ jQuery(document).ready(
             // Update value
             jQuery(this).val(sanitized);
         });
+		
+		
+		if(jQuery(window).width() <= 768)
+		{	
+		jQuery('.take_care .col-md-6:last-child img').insertAfter('.take_care_description h2');
+		jQuery('.take_care .col-md-2 img').insertAfter('.take_care_description h2');
+		}
+		
     }
 );

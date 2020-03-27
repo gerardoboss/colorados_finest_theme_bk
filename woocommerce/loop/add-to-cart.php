@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 global $product;
 
 echo apply_filters('woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
-    sprintf('<button onClick="window.location.href = \'%s\'" class="btn btn-warning btn-lg">%s</button>',
+    sprintf('<button onClick="window.location.href = \'%s\'" class="btn btn-warning btn-lg btn-round-colorado">%s</button>',
         esc_url($product->add_to_cart_url()),
         //esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
         //esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),

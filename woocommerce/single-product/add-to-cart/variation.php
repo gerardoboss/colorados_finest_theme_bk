@@ -11,6 +11,7 @@
  */
 
 defined('ABSPATH') || exit;
+global $product;
 
 ?>
 <script type="text/template" id="tmpl-variation-template">
@@ -21,6 +22,8 @@ defined('ABSPATH') || exit;
             {{{ data.variation.price_html }}}
         </div>
         <div class="woocommerce-variation-availability">{{{ data.variation.availability_html }}}</div>
+        <button type="submit"
+                class="btn btn-warning btn-lg"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
     </div>
     <table class="table_products table table-striped">
         <tr>

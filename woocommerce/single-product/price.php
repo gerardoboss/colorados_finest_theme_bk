@@ -27,5 +27,7 @@ global $product;
     <div class="variation_price">
         <span class="price price_title">Price: </span><span><?php echo $product->get_price_html(); ?></span>
     </div>
-
+    <button type="submit" form="singleProductSubmit" name="add-to-cart"
+            value="<?php echo esc_attr($product->get_id()); ?>"
+            class="btn btn-warning btn-lg"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
 <?php endif; ?>
